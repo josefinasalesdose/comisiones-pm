@@ -301,46 +301,49 @@ function toast(msg,type='ok'){const el=document.getElementById('toast');el.textC
 let upsellRate = 10;
 
 function renderNueva(){
-  const renovOpts=Array.from({length:10},(_,i)=>`<option value="${i+1}">${i+1}ª renovación</option>`).join('');
+  const renovOpts=Array.from({length:10},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'ª renovación</option>').join('');
   const isUpsell = formType === 'upsell';
-  return `<div class="page">
-    <div class="page-header"><div class="page-title">Nueva comisión</div><div class="page-sub">Registra una renovación o upsell para calcular la comisión automáticamente</div></div>
-    <div class="card"><div class="form-grid">
-      <div class="form-row">
-        <div class="field"><label>Cliente *</label><input type="text" id="f-client" placeholder="Nombre del cliente"></div>
-        <div class="field"><label>Project Manager</label><input type="text" id="f-pm" placeholder="Opcional"></div>
-      </div>
-      <div class="field"><label>Tipo de operación *</label>
-        <div class="type-grid" id="type-grid">
-          <button class="type-btn ${formType==='renovation'?'active-ren':''}" onclick="setFormType('renovation')"><span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">${appData.config.renovation.map(t=>t.rate+'%').join(' · ')}</span></button>
-          <button class="type-btn ${formType==='upsell'?'active-up':''}" onclick="setFormType('upsell')"><span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">5% · 10%</span></button>
-        </div>
-      </div>
-      ${isUpsell ? `
-      <div class="field"><label>¿Cómo se cerró el upsell?</label>
-        <div class="type-grid">
-          <button class="type-btn ${upsellRate===10?'active-up':''}" onclick="upsellRate=10;refreshPreview();this.closest('.form-grid').querySelectorAll('.upsell-rate-btn').forEach(b=>b.classList.remove('active-up'));this.classList.add('active-up')">
-            <span>🙋</span>
-            <div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">10% de comisión</div></div>
-          </button>
-          <button class="type-btn ${upsellRate===5?'active-up':''}" onclick="upsellRate=5;refreshPreview();this.closest('.form-grid').querySelectorAll('.upsell-rate-btn').forEach(b=>b.classList.remove('active-up'));this.classList.add('active-up')">
-            <span>🤝</span>
-            <div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">5% de comisión</div></div>
-          </button>
-        </div>
-      </div>` : ''}
-      <div class="form-row">
-        <div class="field"><label>Importe del upsell (€) *</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01" oninput="refreshPreview()"></div>
-        <div class="field"><label>Nº de renovación</label><select id="f-renov">${renovOpts}</select></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label>Fecha inicio del periodo</label><input type="date" id="f-datefrom"></div>
-        <div class="field"><label>Fecha fin del periodo</label><input type="date" id="f-dateto"></div>
-      </div>
-      <div id="preview-area"></div>
-      <button class="save-btn" id="save-btn-main" onclick="guardarComision()">✓ &nbsp;Guardar comisión</button>
-    </div></div>
-  </div>`;
+  const renRates = appData.config.renovation.map(t=>t.rate+'%').join(' · ');
+
+  let upsellBlock = '';
+  if(isUpsell){
+    upsellBlock = '<div class="field"><label>¿Cómo se cerró el upsell?</label><div class="type-grid">'
+      + '<button class="type-btn '+(upsellRate===10?'active-up':'')+'" onclick="upsellRate=10;setUpsellRate(this)">'
+      + '<span>🙋</span><div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">10% de comisión</div></div></button>'
+      + '<button class="type-btn '+(upsellRate===5?'active-up':'')+'" onclick="upsellRate=5;setUpsellRate(this)">'
+      + '<span>🤝</span><div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">5% de comisión</div></div></button>'
+      + '</div></div>';
+  }
+
+  return '<div class="page">'
+    + '<div class="page-header"><div class="page-title">Nueva comisión</div><div class="page-sub">Registra una renovación o upsell para calcular la comisión automáticamente</div></div>'
+    + '<div class="card"><div class="form-grid">'
+    + '<div class="form-row">'
+    + '<div class="field"><label>Cliente *</label><input type="text" id="f-client" placeholder="Nombre del cliente"></div>'
+    + '<div class="field"><label>Project Manager</label><input type="text" id="f-pm" placeholder="Opcional"></div>'
+    + '</div>'
+    + '<div class="field"><label>Tipo de operación *</label><div class="type-grid" id="type-grid">'
+    + '<button class="type-btn '+(formType==='renovation'?'active-ren':'')+'" onclick="setFormType(&quot;renovation&quot;)"><span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">'+renRates+'</span></button>'
+    + '<button class="type-btn '+(formType==='upsell'?'active-up':'')+'" onclick="setFormType(&quot;upsell&quot;)"><span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">5% · 10%</span></button>'
+    + '</div></div>'
+    + upsellBlock
+    + '<div class="form-row">'
+    + '<div class="field"><label>'+(isUpsell?'Importe del upsell':'Importe del contrato')+' (€) *</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01" oninput="refreshPreview()"></div>'
+    + '<div class="field"><label>Nº de renovación</label><select id="f-renov">'+renovOpts+'</select></div>'
+    + '</div>'
+    + '<div class="form-row">'
+    + '<div class="field"><label>Fecha inicio del periodo</label><input type="date" id="f-datefrom"></div>'
+    + '<div class="field"><label>Fecha fin del periodo</label><input type="date" id="f-dateto"></div>'
+    + '</div>'
+    + '<div id="preview-area"></div>'
+    + '<button class="save-btn" id="save-btn-main" onclick="guardarComision()">✓ &nbsp;Guardar comisión</button>'
+    + '</div></div></div>';
+}
+
+function setUpsellRate(btn){
+  document.querySelectorAll('#type-grid ~ div .type-btn').forEach(b=>b.className='type-btn');
+  btn.className='type-btn active-up';
+  refreshPreview();
 }
 
 function setFormType(t){
