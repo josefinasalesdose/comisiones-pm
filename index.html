@@ -139,7 +139,8 @@ let currentUser = null;
 let appData = {
   history: [],
   config: JSON.parse(localStorage.getItem('pmconfig_v5') || 'null') || {
-    renovation: [{min:0,max:10000,rate:3},{min:10000,max:50000,rate:5},{min:50000,max:null,rate:7}]
+    renovation: [{min:0,max:10000,rate:3},{min:10000,max:50000,rate:5},{min:50000,max:null,rate:7}],
+    upsell: {solo: 10, ae: 5}
   }
 };
 let currentPage = 'nueva';
@@ -283,20 +284,23 @@ function renderNueva(){
   for(var i=1;i<=10;i++) renovOpts += '<option value="'+i+'">'+i+'ª renovación</option>';
   var renRates = appData.config.renovation.map(function(t){return t.rate+'%';}).join(' · ');
   var isUpsell = formType === 'upsell';
+  var cfg = appData.config.upsell || {solo:10, ae:5};
 
   var upsellBlock = '';
   if(isUpsell){
+    var soloClass = upsellRate===cfg.solo ? 'active-up' : '';
+    var aeClass   = upsellRate===cfg.ae   ? 'active-up' : '';
     upsellBlock =
       '<div class="field">' +
         '<label>¿Cómo se cerró el upsell?</label>' +
         '<div class="type-grid">' +
-          '<button class="type-btn '+(upsellRate===10?'active-up':'')+'" id="btn-solo" onclick="selectUpsellRate(10)">' +
+          '<button class="type-btn '+soloClass+'" id="btn-solo" onclick="selectUpsellRate('+cfg.solo+')">' +
             '<span>🙋</span>' +
-            '<div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">10% de comisión</div></div>' +
+            '<div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">'+cfg.solo+'% de comisión</div></div>' +
           '</button>' +
-          '<button class="type-btn '+(upsellRate===5?'active-up':'')+'" id="btn-ae" onclick="selectUpsellRate(5)">' +
+          '<button class="type-btn '+aeClass+'" id="btn-ae" onclick="selectUpsellRate('+cfg.ae+')">' +
             '<span>🤝</span>' +
-            '<div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">5% de comisión</div></div>' +
+            '<div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">'+cfg.ae+'% de comisión</div></div>' +
           '</button>' +
         '</div>' +
       '</div>';
@@ -311,11 +315,11 @@ function renderNueva(){
       '</div>' +
       '<div class="field"><label>Tipo de operación *</label>' +
         '<div class="type-grid">' +
-          '<button class="type-btn '+(formType==='renovation'?'active-ren':'')+'" id="btn-ren" onclick="selectFormType(\'renovation\')">' +
+          '<button class="type-btn '+(formType==='renovation'?'active-ren':'')+'" id="btn-ren" onclick="selectFormType(&quot;renovation&quot;)">' +
             '<span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">'+renRates+'</span>' +
           '</button>' +
-          '<button class="type-btn '+(formType==='upsell'?'active-up':'')+'" id="btn-up" onclick="selectFormType(\'upsell\')">' +
-            '<span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">5% · 10%</span>' +
+          '<button class="type-btn '+(formType==='upsell'?'active-up':'')+'" id="btn-up" onclick="selectFormType(&quot;upsell&quot;)">' +
+            '<span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">'+cfg.solo+'% · '+cfg.ae+'%</span>' +
           '</button>' +
         '</div>' +
       '</div>' +
@@ -333,6 +337,7 @@ function renderNueva(){
     '</div></div></div>';
 }
 
+
 function selectFormType(t){
   var client = document.getElementById('f-client') ? document.getElementById('f-client').value : '';
   var pm = document.getElementById('f-pm') ? document.getElementById('f-pm').value : '';
@@ -341,7 +346,7 @@ function selectFormType(t){
   var dateto = document.getElementById('f-dateto') ? document.getElementById('f-dateto').value : '';
   var renov = document.getElementById('f-renov') ? document.getElementById('f-renov').value : '1';
   formType = t;
-  if(t==='upsell') upsellRate = 10;
+  if(t==='upsell') upsellRate = appData.config.upsell ? appData.config.upsell.solo : 10;
   var el = document.getElementById('main-content');
   if(el) el.innerHTML = renderNueva();
   if(document.getElementById('f-client')) document.getElementById('f-client').value = client;
@@ -611,16 +616,28 @@ function renderConfig(){
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="font-size:14px;font-weight:600">Tramos de renovación</span></div>' +
       tiersHtml +
     '</div>' +
-    '<div class="card" style="margin-top:14px">' +
-      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block"></span><span style="font-size:14px;font-weight:600">Upsell</span></div>' +
-      '<div style="font-size:13.5px;color:var(--text2);line-height:1.7">' +
-        '🙋 <strong>Solo el PM</strong> → 10% del importe<br>' +
-        '🤝 <strong>PM + AE</strong> → 5% del importe<br>' +
-        '<span style="font-size:12px;color:var(--text3)">El porcentaje se selecciona al registrar cada upsell.</span>' +
+        '<div class="card" style="margin-top:14px">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block"></span><span style="font-size:14px;font-weight:600">Upsell</span></div>' +
+      '<div class="tier-row">' +
+        '<div class="tier-field"><label>Solo el PM 🙋</label><div class="rate-wrap"><input type="number" class="with-sfx" value="'+(appData.config.upsell?appData.config.upsell.solo:10)+'" onchange="updateUpsellRate(0,this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div>' +
+        '<div class="tier-field"><label>PM + AE 🤝</label><div class="rate-wrap"><input type="number" class="with-sfx" value="'+(appData.config.upsell?appData.config.upsell.ae:5)+'" onchange="updateUpsellRate(1,this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div>' +
+        '<div class="tier-field"></div>' +
       '</div>' +
     '</div>' +
     (configSaved ? '<div style="font-size:12px;color:var(--teal);margin-top:10px">✓ Cambios guardados</div>' : '') +
   '</div>';
+}
+
+function updateUpsellRate(idx,val){
+  var v = parseFloat(val);
+  if(!isNaN(v)&&v>=0&&v<=100){
+    if(!appData.config.upsell) appData.config.upsell = {solo:10,ae:5};
+    if(idx===0) appData.config.upsell.solo = v;
+    else appData.config.upsell.ae = v;
+  }
+  localStorage.setItem('pmconfig_v5', JSON.stringify(appData.config));
+  configSaved = true; renderPage();
+  setTimeout(function(){configSaved=false;renderPage();}, 2500);
 }
 
 function updateTierRate(idx,val){
