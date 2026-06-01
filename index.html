@@ -298,8 +298,11 @@ function calcCommission(amount,type){
 function toast(msg,type='ok'){const el=document.getElementById('toast');el.textContent=msg;el.className='show '+(type==='ok'?'ok':'err');setTimeout(()=>el.className='',2800);}
 
 // ── NUEVA ─────────────────────────────────────────────────────────────────────
+let upsellRate = 10;
+
 function renderNueva(){
   const renovOpts=Array.from({length:10},(_,i)=>`<option value="${i+1}">${i+1}ª renovación</option>`).join('');
+  const isUpsell = formType === 'upsell';
   return `<div class="page">
     <div class="page-header"><div class="page-title">Nueva comisión</div><div class="page-sub">Registra una renovación o upsell para calcular la comisión automáticamente</div></div>
     <div class="card"><div class="form-grid">
@@ -309,13 +312,26 @@ function renderNueva(){
       </div>
       <div class="field"><label>Tipo de operación *</label>
         <div class="type-grid" id="type-grid">
-          <button class="type-btn active-ren" onclick="setFormType('renovation')"><span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">${appData.config.renovation.map(t=>t.rate+'%').join(' · ')}</span></button>
-          <button class="type-btn" onclick="setFormType('upsell')"><span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">${appData.config.upsell.map(t=>t.rate+'%').join(' · ')}</span></button>
+          <button class="type-btn ${formType==='renovation'?'active-ren':''}" onclick="setFormType('renovation')"><span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">${appData.config.renovation.map(t=>t.rate+'%').join(' · ')}</span></button>
+          <button class="type-btn ${formType==='upsell'?'active-up':''}" onclick="setFormType('upsell')"><span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">5% · 10%</span></button>
         </div>
       </div>
+      ${isUpsell ? `
+      <div class="field"><label>¿Cómo se cerró el upsell?</label>
+        <div class="type-grid">
+          <button class="type-btn ${upsellRate===10?'active-up':''}" onclick="upsellRate=10;refreshPreview();this.closest('.form-grid').querySelectorAll('.upsell-rate-btn').forEach(b=>b.classList.remove('active-up'));this.classList.add('active-up')">
+            <span>🙋</span>
+            <div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">10% de comisión</div></div>
+          </button>
+          <button class="type-btn ${upsellRate===5?'active-up':''}" onclick="upsellRate=5;refreshPreview();this.closest('.form-grid').querySelectorAll('.upsell-rate-btn').forEach(b=>b.classList.remove('active-up'));this.classList.add('active-up')">
+            <span>🤝</span>
+            <div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">5% de comisión</div></div>
+          </button>
+        </div>
+      </div>` : ''}
       <div class="form-row">
-        <div class="field"><label>Importe del contrato (€) *</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01" oninput="refreshPreview()"></div>
-        <div class="field"><label>Nº de renovación</label><select id="f-renov">${renovOpts}</select></div>
+        <div class="field"><label>Importe del upsell (€) *</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01" oninput="refreshPreview()"></div>
+        ${!isUpsell ? `<div class="field"><label>Nº de renovación</label><select id="f-renov">${renovOpts}</select></div>` : '<div class="field"><label>Nº de renovación</label><select id="f-renov">${renovOpts}</select></div>'}
       </div>
       <div class="form-row">
         <div class="field"><label>Fecha inicio del periodo</label><input type="date" id="f-datefrom"></div>
@@ -329,8 +345,23 @@ function renderNueva(){
 
 function setFormType(t){
   formType=t;
-  const btns=document.querySelectorAll('#type-grid .type-btn');
-  if(btns.length){btns[0].className='type-btn'+(t==='renovation'?' active-ren':'');btns[1].className='type-btn'+(t==='upsell'?' active-up':'');}
+  if(t==='upsell') upsellRate=10;
+  // Save current field values before re-render
+  const client=document.getElementById('f-client')?.value||'';
+  const pm=document.getElementById('f-pm')?.value||'';
+  const amount=document.getElementById('f-amount')?.value||'';
+  const datefrom=document.getElementById('f-datefrom')?.value||'';
+  const dateto=document.getElementById('f-dateto')?.value||'';
+  const renov=document.getElementById('f-renov')?.value||'1';
+  const el=document.getElementById('main-content');
+  if(el) el.innerHTML=renderNueva();
+  // Restore values
+  if(document.getElementById('f-client'))document.getElementById('f-client').value=client;
+  if(document.getElementById('f-pm'))document.getElementById('f-pm').value=pm;
+  if(document.getElementById('f-amount'))document.getElementById('f-amount').value=amount;
+  if(document.getElementById('f-datefrom'))document.getElementById('f-datefrom').value=datefrom;
+  if(document.getElementById('f-dateto'))document.getElementById('f-dateto').value=dateto;
+  if(document.getElementById('f-renov'))document.getElementById('f-renov').value=renov;
   refreshPreview();
 }
 
@@ -339,11 +370,19 @@ function refreshPreview(){
   if(!amEl||!pa)return;
   const amount=parseFloat(amEl.value);
   if(isNaN(amount)||amount<=0){pa.innerHTML='';return}
-  const prev=calcCommission(amount,formType),isBlue=formType==='renovation';
+  let rate, commission;
+  const isBlue=formType==='renovation';
+  if(formType==='upsell'){
+    rate=upsellRate;
+    commission=Math.round(amount*rate/100*100)/100;
+  } else {
+    const prev=calcCommission(amount,formType);
+    rate=prev.rate; commission=prev.commission;
+  }
   pa.innerHTML=`<div class="preview">
     <div><div class="preview-label">Importe</div><div class="preview-val" style="color:var(--text2)">${fmt(amount)}</div></div>
-    <div style="text-align:center"><div class="preview-label">Tramo</div><div class="preview-val ${isBlue?'blue':'teal'}">${prev.rate}%</div></div>
-    <div style="text-align:right"><div class="preview-label">Comisión</div><div class="preview-val ${isBlue?'blue':'teal'}">${fmt(prev.commission)}</div></div>
+    <div style="text-align:center"><div class="preview-label">${formType==='upsell'?'Comisión':'Tramo'}</div><div class="preview-val ${isBlue?'blue':'teal'}">${rate}%</div></div>
+    <div style="text-align:right"><div class="preview-label">Comisión</div><div class="preview-val ${isBlue?'blue':'teal'}">${fmt(commission)}</div></div>
   </div>`;
 }
 
@@ -356,8 +395,15 @@ async function guardarComision(){
   const dateTo=document.getElementById('f-dateto')?.value||'';
   if(!client){alert('Por favor ingresa el nombre del cliente.');return}
   if(isNaN(amount)||amount<=0){alert('Por favor ingresa un importe válido.');return}
-  const prev=calcCommission(amount,formType);
-  const entry={id:Date.now(),date:todayStr(),client,pm:pm||'—',type:formType,renovNum,dateFrom,dateTo,amount,rate:prev.rate,commission:prev.commission,status:'pending',payrollMonth:''};
+  let rate, commission;
+  if(formType==='upsell'){
+    rate=upsellRate;
+    commission=Math.round(amount*rate/100*100)/100;
+  } else {
+    const prev=calcCommission(amount,formType);
+    rate=prev.rate; commission=prev.commission;
+  }
+  const entry={id:Date.now(),date:todayStr(),client,pm:pm||'—',type:formType,renovNum,dateFrom,dateTo,amount,rate,commission,status:'pending',payrollMonth:''};
   const btn=document.getElementById('save-btn-main');
   if(btn){btn.disabled=true;btn.textContent='Guardando...';}
   const {error}=await sb.from('comisiones').insert(entryToRow(entry));
