@@ -22,8 +22,6 @@
   --radius:10px;--radius-lg:14px;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6}
-
-/* LOGIN */
 .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
 .login-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:48px 40px;max-width:420px;width:100%;text-align:center}
 .login-logo{width:60px;height:60px;background:linear-gradient(135deg,var(--teal),var(--blue));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 24px}
@@ -31,10 +29,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .login-sub{color:var(--text2);font-size:14px;margin-bottom:32px;line-height:1.6}
 .google-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:13px 24px;background:#fff;border:1px solid #dadce0;border-radius:var(--radius);color:#3c4043;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:box-shadow .15s}
 .google-btn:hover{box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.google-btn svg{flex-shrink:0}
 .login-footer{margin-top:20px;font-size:12px;color:var(--text3)}
-
-/* LAYOUT */
 .layout{display:flex;min-height:100vh}
 .sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);padding:28px 14px;display:flex;flex-direction:column;gap:3px;position:sticky;top:0;height:100vh;overflow-y:auto}
 .logo{display:flex;align-items:center;gap:10px;padding:0 6px 22px;border-bottom:1px solid var(--border);margin-bottom:10px}
@@ -46,18 +41,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .nav-btn.active{background:var(--bg4);color:var(--text);font-weight:500}
 .nav-btn.active::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:0 2px 2px 0;background:var(--teal)}
 .nav-badge{margin-left:auto;background:var(--bg);border:1px solid var(--border);color:var(--text3);font-size:10px;padding:1px 6px;border-radius:20px;font-family:'DM Mono',monospace}
-.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;margin-right:4px;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .user-block{margin-top:auto;padding-top:14px;border-top:1px solid var(--border)}
-.user-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.user-avatar-placeholder{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
 .user-info{display:flex;align-items:center;gap:8px;padding:8px 6px;border-radius:var(--radius);background:var(--bg3);margin-bottom:8px}
+.user-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.user-avatar-placeholder{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;color:#fff}
 .user-name{font-size:12px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .user-email{font-size:10px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .logout-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 10px;border-radius:var(--radius);border:none;background:none;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer;transition:all .15s}
 .logout-btn:hover{background:var(--red-dim);color:var(--red)}
-
-/* MAIN */
 .main{flex:1;padding:36px 44px;max-width:980px}
 .page-header{margin-bottom:28px}
 .page-title{font-size:21px;font-weight:600;letter-spacing:-.4px;margin-bottom:4px}
@@ -79,7 +70,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .field input:focus,.field select:focus{border-color:var(--border2)}
 .field input::placeholder{color:var(--text3)}.field input[type=date]{color-scheme:dark}.field select option{background:var(--bg3)}
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.type-btn{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg3);padding:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text2);display:flex;align-items:center;gap:10px;transition:all .15s}
+.type-btn{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg3);padding:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text2);display:flex;align-items:center;gap:10px;transition:all .15s;width:100%;text-align:left}
 .type-btn:hover{background:var(--bg4);color:var(--text)}
 .type-btn.active-ren{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
 .type-btn.active-up{border-color:var(--teal);background:var(--teal-dim);color:var(--teal)}
@@ -104,8 +95,7 @@ tbody td.primary{color:var(--text);font-weight:500}
 .renov-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--bg4);border:1px solid var(--border2);font-size:11px;font-weight:600;color:var(--text2);font-family:'DM Mono',monospace}
 .val-ren{color:var(--blue);font-family:'DM Mono',monospace;font-weight:500}.val-up{color:var(--teal);font-family:'DM Mono',monospace;font-weight:500}
 .status-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:'DM Sans',sans-serif;transition:all .15s}
-.status-btn.pending{background:var(--amber-dim);color:var(--amber);border-color:rgba(245,166,35,.2)}.status-btn.pending:hover{background:rgba(245,166,35,.18)}
-.status-btn.paid{background:var(--green-dim);color:var(--green);border-color:rgba(74,222,128,.2)}.status-btn.paid:hover{background:rgba(74,222,128,.18)}
+.status-btn.pending{background:var(--amber-dim);color:var(--amber);border-color:rgba(245,166,35,.2)}.status-btn.paid{background:var(--green-dim);color:var(--green);border-color:rgba(74,222,128,.2)}
 .payroll-tag{background:var(--purple-dim);color:var(--purple);padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer}
 .payroll-input{background:var(--bg4);border:1px solid var(--border2);border-radius:7px;padding:3px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:11px;outline:none;width:90px}
 .set-payroll-btn{background:none;border:1px dashed var(--border2);border-radius:6px;padding:3px 8px;color:var(--text3);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
@@ -126,7 +116,7 @@ tbody td.primary{color:var(--text);font-weight:500}
 .tier-field label{font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
 .tier-field input{background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:7px 11px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;outline:none;width:100%}
 .tier-field input:disabled{opacity:.35;cursor:not-allowed}
-.rate-wrap{position:relative}.rate-suffix{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:12px;font-family:'DM Mono',monospace;pointer-events:none}
+.rate-wrap{position:relative}.rate-suffix{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:12px;pointer-events:none}
 .tier-field input.with-sfx{padding-right:24px}
 .loading-page{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px;color:var(--text2)}
 .spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .7s linear infinite}
@@ -140,384 +130,524 @@ tbody td.primary{color:var(--text);font-weight:500}
 <body>
 <div id="toast"></div>
 <div id="root"></div>
-
 <script>
 const SUPABASE_URL = 'https://teuqoeymkruhcoblnpsy.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRldXFvZXlta3J1aGNvYmxucHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMTAxNzAsImV4cCI6MjA5NTg4NjE3MH0.OYb9wy5qa3f3FNNj3Vyp9JxSzTB2d81xpwQzmVakZ-A';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let currentUser = null;
-let appData = { history:[], config: JSON.parse(localStorage.getItem('pmconfig_v4')||'null') || {
-  renovation:[{min:0,max:10000,rate:3},{min:10000,max:50000,rate:5},{min:50000,max:null,rate:7}],
-  upsell:[{min:0,max:10000,rate:5},{min:10000,max:50000,rate:7},{min:50000,max:null,rate:10}]
-}};
-
-let currentPage='nueva', histView='general', histFilter={type:'all',status:'all'}, editPayroll=null, configSaved=false, formType='renovation';
-
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-sb.auth.onAuthStateChange(async (event, session) => {
-  currentUser = session?.user || null;
-  if (currentUser) {
-    renderApp();
-    await loadData();
-  } else {
-    renderLogin();
+let appData = {
+  history: [],
+  config: JSON.parse(localStorage.getItem('pmconfig_v5') || 'null') || {
+    renovation: [{min:0,max:10000,rate:3},{min:10000,max:50000,rate:5},{min:50000,max:null,rate:7}]
   }
-});
-
-async function signInWithGoogle() {
-  const { error } = await sb.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: 'https://comisiones-pm.vercel.app',
-      skipBrowserRedirect: false
-    }
-  });
-  if (error) toast('Error al iniciar sesión: ' + error.message, 'err');
-}
-
-async function signOut() {
-  await sb.auth.signOut();
-  appData.history = [];
-  renderLogin();
-}
-
-// ── LOGIN SCREEN ──────────────────────────────────────────────────────────────
-function renderLogin() {
-  document.getElementById('root').innerHTML = `
-  <div class="login-wrap">
-    <div class="login-card">
-      <div class="login-logo">💰</div>
-      <div class="login-title">Comisiones PM</div>
-      <div class="login-sub">Inicia sesión para acceder a tus comisiones. Cada PM tiene su propio espacio privado.</div>
-      <button class="google-btn" onclick="signInWithGoogle()">
-        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
-        Continuar con Google
-      </button>
-      <div class="login-footer">Tus datos son privados y solo visibles para ti</div>
-    </div>
-  </div>`;
-}
-
-// ── APP SHELL ─────────────────────────────────────────────────────────────────
-function renderApp() {
-  const u = currentUser;
-  const name = u?.user_metadata?.full_name || u?.email || '';
-  const email = u?.email || '';
-  const avatar = u?.user_metadata?.avatar_url;
-  const initials = name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
-
-  document.getElementById('root').innerHTML = `
-  <div class="layout">
-    <nav class="sidebar">
-      <div class="logo">
-        <div class="logo-icon">💰</div>
-        <div><div class="logo-text">Comisiones</div><div class="logo-sub">Project Manager</div></div>
-      </div>
-      <div class="nav-section">Gestión</div>
-      <button class="nav-btn active" id="nav-nueva" onclick="showPage('nueva')"><span>✦</span> Nueva comisión</button>
-      <button class="nav-btn" id="nav-historial" onclick="showPage('historial')"><span>◷</span> Historial <span class="nav-badge" id="count-badge">0</span></button>
-      <div class="nav-section">Sistema</div>
-      <button class="nav-btn" id="nav-config" onclick="showPage('config')"><span>⚙</span> Configuración</button>
-      <div class="user-block">
-        <div class="user-info">
-          ${avatar ? `<img class="user-avatar" src="${avatar}" alt="">` : `<div class="user-avatar-placeholder">${initials}</div>`}
-          <div style="overflow:hidden;min-width:0">
-            <div class="user-name">${name}</div>
-            <div class="user-email">${email}</div>
-          </div>
-        </div>
-        <button class="logout-btn" onclick="signOut()">⎋ &nbsp;Cerrar sesión</button>
-      </div>
-    </nav>
-    <main class="main" id="main-content">
-      <div class="loading-page"><div class="spinner"></div><span>Cargando...</span></div>
-    </main>
-  </div>`;
-}
-
-function showPage(page) {
-  currentPage = page;
-  ['nueva','historial','config'].forEach(p => {
-    const el = document.getElementById('nav-'+p);
-    if (el) el.classList.toggle('active', p === page);
-  });
-  renderPage();
-}
-
-function renderPage() {
-  const el = document.getElementById('main-content');
-  if (!el) return;
-  if (currentPage === 'nueva')          el.innerHTML = renderNueva();
-  else if (currentPage === 'historial') el.innerHTML = renderHistorial();
-  else                                  el.innerHTML = renderConfig();
-  const cb = document.getElementById('count-badge');
-  if (cb) cb.textContent = appData.history.length;
-}
-
-// ── SUPABASE DATA ─────────────────────────────────────────────────────────────
-async function loadData() {
-  try {
-    const { data, error } = await sb.from('comisiones').select('*').order('id', { ascending: false });
-    if (error) throw error;
-    appData.history = data.map(rowToEntry);
-    renderPage();
-  } catch(e) {
-    toast('Error cargando datos: ' + e.message, 'err');
-    renderPage();
-  }
-}
-
-function entryToRow(e) {
-  return { id:e.id, date:e.date, client:e.client, pm:e.pm, type:e.type,
-    renov_num:e.renovNum, date_from:e.dateFrom, date_to:e.dateTo,
-    amount:e.amount, rate:e.rate, commission:e.commission,
-    status:e.status, payroll_month:e.payrollMonth,
-    user_id: currentUser?.id };
-}
-
-function rowToEntry(r) {
-  return { id:r.id, date:r.date, client:r.client, pm:r.pm, type:r.type,
-    renovNum:r.renov_num, dateFrom:r.date_from||'', dateTo:r.date_to||'',
-    amount:parseFloat(r.amount), rate:parseFloat(r.rate), commission:parseFloat(r.commission),
-    status:r.status||'pending', payrollMonth:r.payroll_month||'' };
-}
+};
+let currentPage = 'nueva';
+let histView = 'general';
+let histFilter = {type:'all', status:'all'};
+let editPayroll = null;
+let configSaved = false;
+let formType = 'renovation';
+let upsellRate = 10;
 
 // ── UTILS ─────────────────────────────────────────────────────────────────────
 const fmt = n => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(n);
 const fmtNum = n => new Intl.NumberFormat('es-ES',{maximumFractionDigits:0}).format(n);
 const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-function fmtMonth(ym){if(!ym)return'—';const[y,m]=ym.split('-');return MONTHS[parseInt(m)-1]+' '+y}
-function fmtDateShort(d){if(!d)return'';const[y,m,day]=d.split('-');return`${day}/${m}/${y.slice(2)}`}
-function todayStr(){return new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'})}
-function calcCommission(amount,type){
-  const tiers=appData.config[type];
-  for(const t of tiers){if(t.max===null||amount<t.max)return{rate:t.rate,commission:Math.round(amount*t.rate/100*100)/100}}
-  const last=tiers[tiers.length-1];return{rate:last.rate,commission:Math.round(amount*last.rate/100*100)/100}
+function fmtMonth(ym){if(!ym)return'—';const p=ym.split('-');return MONTHS[parseInt(p[1])-1]+' '+p[0];}
+function fmtDateShort(d){if(!d)return'';const p=d.split('-');return p[2]+'/'+p[1]+'/'+p[0].slice(2);}
+function todayStr(){return new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});}
+function calcRenovCommission(amount){
+  const tiers = appData.config.renovation;
+  for(const t of tiers){if(t.max===null||amount<t.max)return{rate:t.rate,commission:Math.round(amount*t.rate/100*100)/100};}
+  const last = tiers[tiers.length-1];
+  return {rate:last.rate, commission:Math.round(amount*last.rate/100*100)/100};
 }
-function toast(msg,type='ok'){const el=document.getElementById('toast');el.textContent=msg;el.className='show '+(type==='ok'?'ok':'err');setTimeout(()=>el.className='',2800);}
+function toast(msg,type){
+  type = type||'ok';
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + (type==='ok'?'ok':'err');
+  setTimeout(function(){el.className='';}, 2800);
+}
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+sb.auth.onAuthStateChange(function(event, session){
+  currentUser = session ? session.user : null;
+  if(currentUser){ renderApp(); loadData(); }
+  else { renderLogin(); }
+});
+
+function signInWithGoogle(){
+  sb.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: 'https://comisiones-pm.vercel.app' }
+  });
+}
+
+function signOut(){
+  sb.auth.signOut();
+  appData.history = [];
+}
+
+function renderLogin(){
+  document.getElementById('root').innerHTML =
+    '<div class="login-wrap">' +
+      '<div class="login-card">' +
+        '<div class="login-logo">💰</div>' +
+        '<div class="login-title">Comisiones PM</div>' +
+        '<div class="login-sub">Inicia sesión para acceder a tus comisiones. Cada PM tiene su propio espacio privado.</div>' +
+        '<button class="google-btn" onclick="signInWithGoogle()">' +
+          '<svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>' +
+          'Continuar con Google' +
+        '</button>' +
+        '<div class="login-footer">Tus datos son privados y solo visibles para ti</div>' +
+      '</div>' +
+    '</div>';
+}
+
+function renderApp(){
+  const u = currentUser;
+  const name = (u && u.user_metadata && u.user_metadata.full_name) ? u.user_metadata.full_name : (u ? u.email : '');
+  const email = u ? u.email : '';
+  const avatar = (u && u.user_metadata) ? u.user_metadata.avatar_url : '';
+  const initials = name.split(' ').map(function(n){return n[0]||'';}).join('').slice(0,2).toUpperCase();
+  const avatarHtml = avatar
+    ? '<img class="user-avatar" src="'+avatar+'" alt="">'
+    : '<div class="user-avatar-placeholder">'+initials+'</div>';
+
+  document.getElementById('root').innerHTML =
+    '<div class="layout">' +
+      '<nav class="sidebar">' +
+        '<div class="logo"><div class="logo-icon">💰</div><div><div class="logo-text">Comisiones</div><div class="logo-sub">Project Manager</div></div></div>' +
+        '<div class="nav-section">Gestión</div>' +
+        '<button class="nav-btn active" id="nav-nueva" onclick="showPage(\'nueva\')"><span>✦</span> Nueva comisión</button>' +
+        '<button class="nav-btn" id="nav-historial" onclick="showPage(\'historial\')"><span>◷</span> Historial <span class="nav-badge" id="count-badge">0</span></button>' +
+        '<div class="nav-section">Sistema</div>' +
+        '<button class="nav-btn" id="nav-config" onclick="showPage(\'config\')"><span>⚙</span> Configuración</button>' +
+        '<div class="user-block">' +
+          '<div class="user-info">' + avatarHtml + '<div style="overflow:hidden;min-width:0"><div class="user-name">'+name+'</div><div class="user-email">'+email+'</div></div></div>' +
+          '<button class="logout-btn" onclick="signOut()">⎋ &nbsp;Cerrar sesión</button>' +
+        '</div>' +
+      '</nav>' +
+      '<main class="main" id="main-content"><div class="loading-page"><div class="spinner"></div><span>Cargando...</span></div></main>' +
+    '</div>';
+}
+
+function showPage(page){
+  currentPage = page;
+  ['nueva','historial','config'].forEach(function(p){
+    var el = document.getElementById('nav-'+p);
+    if(el) el.classList.toggle('active', p===page);
+  });
+  renderPage();
+}
+
+function renderPage(){
+  var el = document.getElementById('main-content');
+  if(!el) return;
+  if(currentPage==='nueva') el.innerHTML = renderNueva();
+  else if(currentPage==='historial') el.innerHTML = renderHistorial();
+  else el.innerHTML = renderConfig();
+  var cb = document.getElementById('count-badge');
+  if(cb) cb.textContent = appData.history.length;
+}
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+async function loadData(){
+  try{
+    var res = await sb.from('comisiones').select('*').order('id',{ascending:false});
+    if(res.error) throw res.error;
+    appData.history = res.data.map(rowToEntry);
+    renderPage();
+  } catch(e){ toast('Error: '+e.message,'err'); renderPage(); }
+}
+
+function entryToRow(e){
+  return {id:e.id,date:e.date,client:e.client,pm:e.pm,type:e.type,
+    renov_num:e.renovNum,date_from:e.dateFrom,date_to:e.dateTo,
+    amount:e.amount,rate:e.rate,commission:e.commission,
+    status:e.status,payroll_month:e.payrollMonth,user_id:currentUser?currentUser.id:null};
+}
+
+function rowToEntry(r){
+  return {id:r.id,date:r.date,client:r.client,pm:r.pm,type:r.type,
+    renovNum:r.renov_num,dateFrom:r.date_from||'',dateTo:r.date_to||'',
+    amount:parseFloat(r.amount),rate:parseFloat(r.rate),commission:parseFloat(r.commission),
+    status:r.status||'pending',payrollMonth:r.payroll_month||''};
+}
 
 // ── NUEVA ─────────────────────────────────────────────────────────────────────
-let upsellRate = 10;
-
 function renderNueva(){
-  const renovOpts=Array.from({length:10},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'ª renovación</option>').join('');
-  const isUpsell = formType === 'upsell';
-  const renRates = appData.config.renovation.map(t=>t.rate+'%').join(' · ');
+  var renovOpts = '';
+  for(var i=1;i<=10;i++) renovOpts += '<option value="'+i+'">'+i+'ª renovación</option>';
+  var renRates = appData.config.renovation.map(function(t){return t.rate+'%';}).join(' · ');
+  var isUpsell = formType === 'upsell';
 
-  let upsellBlock = '';
+  var upsellBlock = '';
   if(isUpsell){
-    upsellBlock = '<div class="field"><label>¿Cómo se cerró el upsell?</label><div class="type-grid">'
-      + '<button class="type-btn '+(upsellRate===10?'active-up':'')+'" onclick="upsellRate=10;setUpsellRate(this)">'
-      + '<span>🙋</span><div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">10% de comisión</div></div></button>'
-      + '<button class="type-btn '+(upsellRate===5?'active-up':'')+'" onclick="upsellRate=5;setUpsellRate(this)">'
-      + '<span>🤝</span><div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">5% de comisión</div></div></button>'
-      + '</div></div>';
+    upsellBlock =
+      '<div class="field">' +
+        '<label>¿Cómo se cerró el upsell?</label>' +
+        '<div class="type-grid">' +
+          '<button class="type-btn '+(upsellRate===10?'active-up':'')+'" id="btn-solo" onclick="selectUpsellRate(10)">' +
+            '<span>🙋</span>' +
+            '<div><div style="font-weight:500">Solo el PM</div><div style="font-size:11px;opacity:.6">10% de comisión</div></div>' +
+          '</button>' +
+          '<button class="type-btn '+(upsellRate===5?'active-up':'')+'" id="btn-ae" onclick="selectUpsellRate(5)">' +
+            '<span>🤝</span>' +
+            '<div><div style="font-weight:500">PM + AE</div><div style="font-size:11px;opacity:.6">5% de comisión</div></div>' +
+          '</button>' +
+        '</div>' +
+      '</div>';
   }
 
-  return '<div class="page">'
-    + '<div class="page-header"><div class="page-title">Nueva comisión</div><div class="page-sub">Registra una renovación o upsell para calcular la comisión automáticamente</div></div>'
-    + '<div class="card"><div class="form-grid">'
-    + '<div class="form-row">'
-    + '<div class="field"><label>Cliente *</label><input type="text" id="f-client" placeholder="Nombre del cliente"></div>'
-    + '<div class="field"><label>Project Manager</label><input type="text" id="f-pm" placeholder="Opcional"></div>'
-    + '</div>'
-    + '<div class="field"><label>Tipo de operación *</label><div class="type-grid" id="type-grid">'
-    + '<button class="type-btn '+(formType==='renovation'?'active-ren':'')+'" onclick="setFormType(&quot;renovation&quot;)"><span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">'+renRates+'</span></button>'
-    + '<button class="type-btn '+(formType==='upsell'?'active-up':'')+'" onclick="setFormType(&quot;upsell&quot;)"><span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">5% · 10%</span></button>'
-    + '</div></div>'
-    + upsellBlock
-    + '<div class="form-row">'
-    + '<div class="field"><label>'+(isUpsell?'Importe del upsell':'Importe del contrato')+' (€) *</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01" oninput="refreshPreview()"></div>'
-    + '<div class="field"><label>Nº de renovación</label><select id="f-renov">'+renovOpts+'</select></div>'
-    + '</div>'
-    + '<div class="form-row">'
-    + '<div class="field"><label>Fecha inicio del periodo</label><input type="date" id="f-datefrom"></div>'
-    + '<div class="field"><label>Fecha fin del periodo</label><input type="date" id="f-dateto"></div>'
-    + '</div>'
-    + '<div id="preview-area"></div>'
-    + '<button class="save-btn" id="save-btn-main" onclick="guardarComision()">✓ &nbsp;Guardar comisión</button>'
-    + '</div></div></div>';
+  return '<div class="page">' +
+    '<div class="page-header"><div class="page-title">Nueva comisión</div><div class="page-sub">Registra una renovación o upsell para calcular la comisión automáticamente</div></div>' +
+    '<div class="card"><div class="form-grid">' +
+      '<div class="form-row">' +
+        '<div class="field"><label>Cliente *</label><input type="text" id="f-client" placeholder="Nombre del cliente"></div>' +
+        '<div class="field"><label>Project Manager</label><input type="text" id="f-pm" placeholder="Opcional"></div>' +
+      '</div>' +
+      '<div class="field"><label>Tipo de operación *</label>' +
+        '<div class="type-grid">' +
+          '<button class="type-btn '+(formType==='renovation'?'active-ren':'')+'" id="btn-ren" onclick="selectFormType(\'renovation\')">' +
+            '<span>🔄</span><span style="font-weight:500">Renovación</span><span class="type-sub">'+renRates+'</span>' +
+          '</button>' +
+          '<button class="type-btn '+(formType==='upsell'?'active-up':'')+'" id="btn-up" onclick="selectFormType(\'upsell\')">' +
+            '<span>📈</span><span style="font-weight:500">Upsell</span><span class="type-sub">5% · 10%</span>' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+      upsellBlock +
+      '<div class="form-row">' +
+        '<div class="field"><label>'+(isUpsell?'Importe del upsell':'Importe del contrato')+' (€) *</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01" oninput="refreshPreview()"></div>' +
+        '<div class="field"><label>Nº de renovación</label><select id="f-renov">'+renovOpts+'</select></div>' +
+      '</div>' +
+      '<div class="form-row">' +
+        '<div class="field"><label>Fecha inicio</label><input type="date" id="f-datefrom"></div>' +
+        '<div class="field"><label>Fecha fin</label><input type="date" id="f-dateto"></div>' +
+      '</div>' +
+      '<div id="preview-area"></div>' +
+      '<button class="save-btn" id="save-btn-main" onclick="guardarComision()">✓ &nbsp;Guardar comisión</button>' +
+    '</div></div></div>';
 }
 
-function setUpsellRate(btn){
-  document.querySelectorAll('#type-grid ~ div .type-btn').forEach(b=>b.className='type-btn');
-  btn.className='type-btn active-up';
+function selectFormType(t){
+  var client = document.getElementById('f-client') ? document.getElementById('f-client').value : '';
+  var pm = document.getElementById('f-pm') ? document.getElementById('f-pm').value : '';
+  var amount = document.getElementById('f-amount') ? document.getElementById('f-amount').value : '';
+  var datefrom = document.getElementById('f-datefrom') ? document.getElementById('f-datefrom').value : '';
+  var dateto = document.getElementById('f-dateto') ? document.getElementById('f-dateto').value : '';
+  var renov = document.getElementById('f-renov') ? document.getElementById('f-renov').value : '1';
+  formType = t;
+  if(t==='upsell') upsellRate = 10;
+  var el = document.getElementById('main-content');
+  if(el) el.innerHTML = renderNueva();
+  if(document.getElementById('f-client')) document.getElementById('f-client').value = client;
+  if(document.getElementById('f-pm')) document.getElementById('f-pm').value = pm;
+  if(document.getElementById('f-amount')) document.getElementById('f-amount').value = amount;
+  if(document.getElementById('f-datefrom')) document.getElementById('f-datefrom').value = datefrom;
+  if(document.getElementById('f-dateto')) document.getElementById('f-dateto').value = dateto;
+  if(document.getElementById('f-renov')) document.getElementById('f-renov').value = renov;
   refreshPreview();
 }
 
-function setFormType(t){
-  formType=t;
-  if(t==='upsell') upsellRate=10;
-  // Save current field values before re-render
-  const client=document.getElementById('f-client')?.value||'';
-  const pm=document.getElementById('f-pm')?.value||'';
-  const amount=document.getElementById('f-amount')?.value||'';
-  const datefrom=document.getElementById('f-datefrom')?.value||'';
-  const dateto=document.getElementById('f-dateto')?.value||'';
-  const renov=document.getElementById('f-renov')?.value||'1';
-  const el=document.getElementById('main-content');
-  if(el) el.innerHTML=renderNueva();
-  // Restore values
-  if(document.getElementById('f-client'))document.getElementById('f-client').value=client;
-  if(document.getElementById('f-pm'))document.getElementById('f-pm').value=pm;
-  if(document.getElementById('f-amount'))document.getElementById('f-amount').value=amount;
-  if(document.getElementById('f-datefrom'))document.getElementById('f-datefrom').value=datefrom;
-  if(document.getElementById('f-dateto'))document.getElementById('f-dateto').value=dateto;
-  if(document.getElementById('f-renov'))document.getElementById('f-renov').value=renov;
+function selectUpsellRate(r){
+  upsellRate = r;
+  var b10 = document.getElementById('btn-solo');
+  var b5 = document.getElementById('btn-ae');
+  if(b10) b10.className = 'type-btn ' + (r===10?'active-up':'');
+  if(b5) b5.className = 'type-btn ' + (r===5?'active-up':'');
   refreshPreview();
 }
 
 function refreshPreview(){
-  const amEl=document.getElementById('f-amount'),pa=document.getElementById('preview-area');
-  if(!amEl||!pa)return;
-  const amount=parseFloat(amEl.value);
-  if(isNaN(amount)||amount<=0){pa.innerHTML='';return}
-  let rate, commission;
-  const isBlue=formType==='renovation';
+  var amEl = document.getElementById('f-amount');
+  var pa = document.getElementById('preview-area');
+  if(!amEl||!pa) return;
+  var amount = parseFloat(amEl.value);
+  if(isNaN(amount)||amount<=0){pa.innerHTML='';return;}
+  var rate, commission;
   if(formType==='upsell'){
-    rate=upsellRate;
-    commission=Math.round(amount*rate/100*100)/100;
+    rate = upsellRate;
+    commission = Math.round(amount*rate/100*100)/100;
   } else {
-    const prev=calcCommission(amount,formType);
-    rate=prev.rate; commission=prev.commission;
+    var prev = calcRenovCommission(amount);
+    rate = prev.rate; commission = prev.commission;
   }
-  pa.innerHTML=`<div class="preview">
-    <div><div class="preview-label">Importe</div><div class="preview-val" style="color:var(--text2)">${fmt(amount)}</div></div>
-    <div style="text-align:center"><div class="preview-label">${formType==='upsell'?'Comisión':'Tramo'}</div><div class="preview-val ${isBlue?'blue':'teal'}">${rate}%</div></div>
-    <div style="text-align:right"><div class="preview-label">Comisión</div><div class="preview-val ${isBlue?'blue':'teal'}">${fmt(commission)}</div></div>
-  </div>`;
+  var color = formType==='renovation' ? 'blue' : 'teal';
+  pa.innerHTML =
+    '<div class="preview">' +
+      '<div><div class="preview-label">Importe</div><div class="preview-val" style="color:var(--text2)">'+fmt(amount)+'</div></div>' +
+      '<div style="text-align:center"><div class="preview-label">Comisión</div><div class="preview-val '+color+'">'+rate+'%</div></div>' +
+      '<div style="text-align:right"><div class="preview-label">Total</div><div class="preview-val '+color+'">'+fmt(commission)+'</div></div>' +
+    '</div>';
 }
 
 async function guardarComision(){
-  const client=(document.getElementById('f-client')?.value||'').trim();
-  const pm=(document.getElementById('f-pm')?.value||'').trim();
-  const amount=parseFloat(document.getElementById('f-amount')?.value||'');
-  const renovNum=parseInt(document.getElementById('f-renov')?.value||1);
-  const dateFrom=document.getElementById('f-datefrom')?.value||'';
-  const dateTo=document.getElementById('f-dateto')?.value||'';
-  if(!client){alert('Por favor ingresa el nombre del cliente.');return}
-  if(isNaN(amount)||amount<=0){alert('Por favor ingresa un importe válido.');return}
-  let rate, commission;
+  var client = (document.getElementById('f-client') ? document.getElementById('f-client').value : '').trim();
+  var pm = (document.getElementById('f-pm') ? document.getElementById('f-pm').value : '').trim();
+  var amount = parseFloat(document.getElementById('f-amount') ? document.getElementById('f-amount').value : '');
+  var renovNum = parseInt(document.getElementById('f-renov') ? document.getElementById('f-renov').value : 1);
+  var dateFrom = document.getElementById('f-datefrom') ? document.getElementById('f-datefrom').value : '';
+  var dateTo = document.getElementById('f-dateto') ? document.getElementById('f-dateto').value : '';
+  if(!client){alert('Por favor ingresa el nombre del cliente.');return;}
+  if(isNaN(amount)||amount<=0){alert('Por favor ingresa un importe válido.');return;}
+  var rate, commission;
   if(formType==='upsell'){
-    rate=upsellRate;
-    commission=Math.round(amount*rate/100*100)/100;
+    rate = upsellRate;
+    commission = Math.round(amount*rate/100*100)/100;
   } else {
-    const prev=calcCommission(amount,formType);
-    rate=prev.rate; commission=prev.commission;
+    var prev = calcRenovCommission(amount);
+    rate = prev.rate; commission = prev.commission;
   }
-  const entry={id:Date.now(),date:todayStr(),client,pm:pm||'—',type:formType,renovNum,dateFrom,dateTo,amount,rate,commission,status:'pending',payrollMonth:''};
-  const btn=document.getElementById('save-btn-main');
+  var entry = {id:Date.now(),date:todayStr(),client:client,pm:pm||'—',type:formType,
+    renovNum:renovNum,dateFrom:dateFrom,dateTo:dateTo,
+    amount:amount,rate:rate,commission:commission,status:'pending',payrollMonth:''};
+  var btn = document.getElementById('save-btn-main');
   if(btn){btn.disabled=true;btn.textContent='Guardando...';}
-  const {error}=await sb.from('comisiones').insert(entryToRow(entry));
-  if(error){toast('Error al guardar: '+error.message,'err');if(btn){btn.disabled=false;btn.textContent='✓  Guardar comisión';}return}
+  var res = await sb.from('comisiones').insert(entryToRow(entry));
+  if(res.error){
+    toast('Error: '+res.error.message,'err');
+    if(btn){btn.disabled=false;btn.textContent='✓  Guardar comisión';}
+    return;
+  }
   appData.history.unshift(entry);
-  formType='renovation';
+  formType = 'renovation';
+  upsellRate = 10;
   toast('Comisión guardada ✓');
   showPage('historial');
 }
 
 // ── HISTORIAL ─────────────────────────────────────────────────────────────────
 function renderHistorial(){
-  const h=appData.history;
-  const totalAll=h.reduce((s,e)=>s+e.commission,0),totalRen=h.filter(e=>e.type==='renovation').reduce((s,e)=>s+e.commission,0);
-  const totalUp=h.filter(e=>e.type==='upsell').reduce((s,e)=>s+e.commission,0),totalPaid=h.filter(e=>e.status==='paid').reduce((s,e)=>s+e.commission,0);
-  return `<div class="page">
-    <div class="page-header"><div class="page-title">Historial</div><div class="page-sub">Gestiona el estado de pago y la nómina de cada comisión</div></div>
-    <div class="metrics">
-      <div class="metric total"><div class="metric-label">Total acumulado</div><div class="metric-val">${fmt(totalAll)}</div><div class="metric-count">${h.length} operaciones</div></div>
-      <div class="metric ren"><div class="metric-label">Renovaciones</div><div class="metric-val">${fmt(totalRen)}</div><div class="metric-count">${h.filter(e=>e.type==='renovation').length} ops</div></div>
-      <div class="metric up"><div class="metric-label">Upsell</div><div class="metric-val">${fmt(totalUp)}</div><div class="metric-count">${h.filter(e=>e.type==='upsell').length} ops</div></div>
-      <div class="metric paid"><div class="metric-label">Pagado</div><div class="metric-val">${fmt(totalPaid)}</div><div class="metric-count">${h.filter(e=>e.status==='paid').length} pagadas</div></div>
-    </div>
-    <div class="view-switcher">
-      <button class="view-btn ${histView==='general'?'active':''}" onclick="histView='general';renderPage()">≡ General</button>
-      <button class="view-btn ${histView==='mes'?'active':''}" onclick="histView='mes';renderPage()">📅 Por mes</button>
-      <button class="view-btn ${histView==='cliente'?'active':''}" onclick="histView='cliente';renderPage()">👤 Por cliente</button>
-      <button class="view-btn ${histView==='nomina'?'active':''}" onclick="histView='nomina';renderPage()">💼 Por nómina</button>
-    </div>
-    <div class="card">${histView==='general'?viewGeneral(h):histView==='mes'?viewMes(h):histView==='cliente'?viewCliente(h):viewNomina(h)}</div>
-  </div>`;
+  var h = appData.history;
+  var totalAll=0,totalRen=0,totalUp=0,totalPaid=0,cntRen=0,cntUp=0,cntPaid=0;
+  h.forEach(function(e){
+    totalAll+=e.commission;
+    if(e.type==='renovation'){totalRen+=e.commission;cntRen++;}
+    else{totalUp+=e.commission;cntUp++;}
+    if(e.status==='paid'){totalPaid+=e.commission;cntPaid++;}
+  });
+  return '<div class="page">' +
+    '<div class="page-header"><div class="page-title">Historial</div><div class="page-sub">Gestiona el estado de pago y la nómina de cada comisión</div></div>' +
+    '<div class="metrics">' +
+      '<div class="metric total"><div class="metric-label">Total acumulado</div><div class="metric-val">'+fmt(totalAll)+'</div><div class="metric-count">'+h.length+' operaciones</div></div>' +
+      '<div class="metric ren"><div class="metric-label">Renovaciones</div><div class="metric-val">'+fmt(totalRen)+'</div><div class="metric-count">'+cntRen+' ops</div></div>' +
+      '<div class="metric up"><div class="metric-label">Upsell</div><div class="metric-val">'+fmt(totalUp)+'</div><div class="metric-count">'+cntUp+' ops</div></div>' +
+      '<div class="metric paid"><div class="metric-label">Pagado</div><div class="metric-val">'+fmt(totalPaid)+'</div><div class="metric-count">'+cntPaid+' pagadas</div></div>' +
+    '</div>' +
+    '<div class="view-switcher">' +
+      '<button class="view-btn '+(histView==='general'?'active':'')+'" onclick="histView=\'general\';renderPage()">≡ General</button>' +
+      '<button class="view-btn '+(histView==='mes'?'active':'')+'" onclick="histView=\'mes\';renderPage()">📅 Por mes</button>' +
+      '<button class="view-btn '+(histView==='cliente'?'active':'')+'" onclick="histView=\'cliente\';renderPage()">👤 Por cliente</button>' +
+      '<button class="view-btn '+(histView==='nomina'?'active':'')+'" onclick="histView=\'nomina\';renderPage()">💼 Por nómina</button>' +
+    '</div>' +
+    '<div class="card">' + (histView==='general'?viewGeneral(h):histView==='mes'?viewMes(h):histView==='cliente'?viewCliente(h):viewNomina(h)) + '</div>' +
+  '</div>';
 }
 
-function filterBar(){return`<div class="table-actions"><select class="filter-select" onchange="histFilter.type=this.value;renderPage()"><option value="all" ${histFilter.type==='all'?'selected':''}>Todos los tipos</option><option value="renovation" ${histFilter.type==='renovation'?'selected':''}>Renovaciones</option><option value="upsell" ${histFilter.type==='upsell'?'selected':''}>Upsell</option></select><select class="filter-select" onchange="histFilter.status=this.value;renderPage()"><option value="all" ${histFilter.status==='all'?'selected':''}>Todos los estados</option><option value="pending" ${histFilter.status==='pending'?'selected':''}>Pendiente</option><option value="paid" ${histFilter.status==='paid'?'selected':''}>Pagada</option></select><button class="export-btn" onclick="exportCSV()">↓ Exportar CSV</button></div>`;}
-function applyFilters(h){return h.filter(e=>{if(histFilter.type!=='all'&&e.type!==histFilter.type)return false;if(histFilter.status!=='all'&&e.status!==histFilter.status)return false;return true;})}
-function tableHead(){return`<thead><tr><th>Registrado</th><th>Cliente</th><th>PM</th><th>Tipo</th><th style="text-align:center">Nº</th><th>Periodo</th><th style="text-align:right">Contrato</th><th style="text-align:right">%</th><th style="text-align:right">Comisión</th><th>Estado</th><th>Nómina</th><th></th></tr></thead>`}
+function filterBar(){
+  return '<div class="table-actions">' +
+    '<select class="filter-select" onchange="histFilter.type=this.value;renderPage()">' +
+      '<option value="all"'+(histFilter.type==='all'?' selected':'')+'>Todos los tipos</option>' +
+      '<option value="renovation"'+(histFilter.type==='renovation'?' selected':'')+'>Renovaciones</option>' +
+      '<option value="upsell"'+(histFilter.type==='upsell'?' selected':'')+'>Upsell</option>' +
+    '</select>' +
+    '<select class="filter-select" onchange="histFilter.status=this.value;renderPage()">' +
+      '<option value="all"'+(histFilter.status==='all'?' selected':'')+'>Todos los estados</option>' +
+      '<option value="pending"'+(histFilter.status==='pending'?' selected':'')+'>Pendiente</option>' +
+      '<option value="paid"'+(histFilter.status==='paid'?' selected':'')+'>Pagada</option>' +
+    '</select>' +
+    '<button class="export-btn" onclick="exportCSV()">↓ Exportar CSV</button>' +
+  '</div>';
+}
+
+function applyFilters(h){
+  return h.filter(function(e){
+    if(histFilter.type!=='all'&&e.type!==histFilter.type)return false;
+    if(histFilter.status!=='all'&&e.status!==histFilter.status)return false;
+    return true;
+  });
+}
+
+function tableHead(){
+  return '<thead><tr><th>Registrado</th><th>Cliente</th><th>PM</th><th>Tipo</th><th style="text-align:center">Nº</th><th>Periodo</th><th style="text-align:right">Contrato</th><th style="text-align:right">%</th><th style="text-align:right">Comisión</th><th>Estado</th><th>Nómina</th><th></th></tr></thead>';
+}
 
 function tableRow(e){
-  const period=(e.dateFrom&&e.dateTo)?`<span class="period-text">${fmtDateShort(e.dateFrom)} → ${fmtDateShort(e.dateTo)}</span>`:`<span style="color:var(--text3);font-size:12px">—</span>`;
-  const statusBtn=`<button class="status-btn ${e.status}" onclick="toggleStatus(${e.id})">${e.status==='paid'?'✓ Pagada':'⏳ Pendiente'}</button>`;
-  let payroll='';
-  if(editPayroll===e.id){payroll=`<input class="payroll-input" type="month" value="${e.payrollMonth||''}" onchange="setPayroll(${e.id},this.value)" onblur="editPayroll=null;renderPage()" autofocus>`;}
-  else if(e.payrollMonth){payroll=`<span class="payroll-tag" onclick="editPayroll=${e.id};renderPage()">${fmtMonth(e.payrollMonth)}</span>`;}
-  else{payroll=`<button class="set-payroll-btn" onclick="editPayroll=${e.id};renderPage()">+ Nómina</button>`;}
-  return`<tr><td style="font-family:'DM Mono',monospace;font-size:11px">${e.date}</td><td class="primary">${e.client}</td><td>${e.pm}</td><td><span class="tag ${e.type==='renovation'?'tag-ren':'tag-up'}">${e.type==='renovation'?'🔄 Renov.':'📈 Upsell'}</span></td><td style="text-align:center"><span class="renov-badge">${e.renovNum||1}</span></td><td>${period}</td><td style="text-align:right;font-family:'DM Mono',monospace">${fmt(e.amount)}</td><td style="text-align:right;color:var(--text3);font-family:'DM Mono',monospace">${e.rate}%</td><td style="text-align:right" class="${e.type==='renovation'?'val-ren':'val-up'}">${fmt(e.commission)}</td><td>${statusBtn}</td><td>${payroll}</td><td><button class="del-btn" onclick="deleteEntry(${e.id})">✕</button></td></tr>`;
+  var period = (e.dateFrom&&e.dateTo) ? '<span class="period-text">'+fmtDateShort(e.dateFrom)+' → '+fmtDateShort(e.dateTo)+'</span>' : '<span style="color:var(--text3);font-size:12px">—</span>';
+  var statusBtn = '<button class="status-btn '+e.status+'" onclick="toggleStatus('+e.id+')">'+(e.status==='paid'?'✓ Pagada':'⏳ Pendiente')+'</button>';
+  var payroll;
+  if(editPayroll===e.id){
+    payroll = '<input class="payroll-input" type="month" value="'+(e.payrollMonth||'')+'" onchange="setPayroll('+e.id+',this.value)" onblur="editPayroll=null;renderPage()" autofocus>';
+  } else if(e.payrollMonth){
+    payroll = '<span class="payroll-tag" onclick="editPayroll='+e.id+';renderPage()">'+fmtMonth(e.payrollMonth)+'</span>';
+  } else {
+    payroll = '<button class="set-payroll-btn" onclick="editPayroll='+e.id+';renderPage()">+ Nómina</button>';
+  }
+  return '<tr>' +
+    '<td style="font-family:\'DM Mono\',monospace;font-size:11px">'+e.date+'</td>' +
+    '<td class="primary">'+e.client+'</td><td>'+e.pm+'</td>' +
+    '<td><span class="tag '+(e.type==='renovation'?'tag-ren':'tag-up')+'">'+(e.type==='renovation'?'🔄 Renov.':'📈 Upsell')+'</span></td>' +
+    '<td style="text-align:center"><span class="renov-badge">'+(e.renovNum||1)+'</span></td>' +
+    '<td>'+period+'</td>' +
+    '<td style="text-align:right;font-family:\'DM Mono\',monospace">'+fmt(e.amount)+'</td>' +
+    '<td style="text-align:right;color:var(--text3);font-family:\'DM Mono\',monospace">'+e.rate+'%</td>' +
+    '<td style="text-align:right" class="'+(e.type==='renovation'?'val-ren':'val-up')+'">'+fmt(e.commission)+'</td>' +
+    '<td>'+statusBtn+'</td><td>'+payroll+'</td>' +
+    '<td><button class="del-btn" onclick="deleteEntry('+e.id+')">✕</button></td>' +
+  '</tr>';
 }
 
-function viewGeneral(h){const f=applyFilters(h);if(!f.length)return filterBar()+`<div class="empty"><div class="empty-icon">📭</div><div>Sin registros</div></div>`;return filterBar()+`<div class="table-wrap"><table>${tableHead()}<tbody>${f.map(tableRow).join('')}</tbody></table></div>`;}
-function viewMes(h){const groups={};h.forEach(e=>{const key=e.dateFrom?e.dateFrom.slice(0,7):(()=>{const p=e.date.split('/');return p[2]+'-'+p[1]})();if(!groups[key])groups[key]=[];groups[key].push(e);});const sorted=Object.keys(groups).sort().reverse();if(!sorted.length)return`<div class="empty"><div class="empty-icon">📅</div><div>Sin registros</div></div>`;return sorted.map(ym=>{const entries=groups[ym];const sum=entries.reduce((s,e)=>s+e.commission,0);return`<div class="group-block"><div class="group-header"><div class="group-title">${fmtMonth(ym+'-01')}</div><div class="group-meta">${entries.length} operaciones</div><div class="group-sum">${fmt(sum)}</div></div><div class="table-wrap"><table>${tableHead()}<tbody>${entries.map(tableRow).join('')}</tbody></table></div></div>`;}).join('');}
-function viewCliente(h){const groups={};h.forEach(e=>{if(!groups[e.client])groups[e.client]=[];groups[e.client].push(e)});const sorted=Object.keys(groups).sort();if(!sorted.length)return`<div class="empty"><div class="empty-icon">👤</div><div>Sin registros</div></div>`;return sorted.map(c=>{const entries=groups[c].sort((a,b)=>(a.renovNum||1)-(b.renovNum||1));const sum=entries.reduce((s,e)=>s+e.commission,0);const max=Math.max(...entries.map(e=>e.renovNum||1));return`<div class="group-block"><div class="group-header"><div class="group-title">${c}</div><div class="group-meta">${entries.length} operaciones · hasta ${max}ª renovación</div><div class="group-sum">${fmt(sum)}</div></div><div class="table-wrap"><table>${tableHead()}<tbody>${entries.map(tableRow).join('')}</tbody></table></div></div>`;}).join('');}
-function viewNomina(h){const withN=h.filter(e=>e.payrollMonth),withoutN=h.filter(e=>!e.payrollMonth);const groups={};withN.forEach(e=>{if(!groups[e.payrollMonth])groups[e.payrollMonth]=[];groups[e.payrollMonth].push(e)});const sorted=Object.keys(groups).sort().reverse();let out='';sorted.forEach(ym=>{const entries=groups[ym];const sum=entries.reduce((s,e)=>s+e.commission,0);out+=`<div class="group-block"><div class="group-header"><div class="group-title">Nómina ${fmtMonth(ym+'-01')}</div><div class="group-meta">${entries.length} comisiones</div><div class="group-sum">${fmt(sum)}</div></div><div class="table-wrap"><table>${tableHead()}<tbody>${entries.map(tableRow).join('')}</tbody></table></div></div>`;});if(withoutN.length)out+=`<div class="group-block"><div class="group-header"><div class="group-title" style="color:var(--text3)">Sin nómina asignada</div><div class="group-meta">${withoutN.length} comisiones</div></div><div class="table-wrap"><table>${tableHead()}<tbody>${withoutN.map(tableRow).join('')}</tbody></table></div></div>`;if(!out)return`<div class="empty"><div class="empty-icon">💼</div><div>Sin registros</div></div>`;return out;}
+function viewGeneral(h){
+  var f = applyFilters(h);
+  if(!f.length) return filterBar()+'<div class="empty"><div class="empty-icon">📭</div><div>Sin registros</div></div>';
+  return filterBar()+'<div class="table-wrap"><table>'+tableHead()+'<tbody>'+f.map(tableRow).join('')+'</tbody></table></div>';
+}
+
+function viewMes(h){
+  var groups = {};
+  h.forEach(function(e){
+    var key = e.dateFrom ? e.dateFrom.slice(0,7) : (function(){var p=e.date.split('/');return p[2]+'-'+p[1];})();
+    if(!groups[key]) groups[key]=[];
+    groups[key].push(e);
+  });
+  var sorted = Object.keys(groups).sort().reverse();
+  if(!sorted.length) return '<div class="empty"><div class="empty-icon">📅</div><div>Sin registros</div></div>';
+  return sorted.map(function(ym){
+    var entries = groups[ym];
+    var sum = entries.reduce(function(s,e){return s+e.commission;},0);
+    return '<div class="group-block"><div class="group-header"><div class="group-title">'+fmtMonth(ym+'-01')+'</div><div class="group-meta">'+entries.length+' operaciones</div><div class="group-sum">'+fmt(sum)+'</div></div><div class="table-wrap"><table>'+tableHead()+'<tbody>'+entries.map(tableRow).join('')+'</tbody></table></div></div>';
+  }).join('');
+}
+
+function viewCliente(h){
+  var groups = {};
+  h.forEach(function(e){if(!groups[e.client])groups[e.client]=[];groups[e.client].push(e);});
+  var sorted = Object.keys(groups).sort();
+  if(!sorted.length) return '<div class="empty"><div class="empty-icon">👤</div><div>Sin registros</div></div>';
+  return sorted.map(function(c){
+    var entries = groups[c].sort(function(a,b){return (a.renovNum||1)-(b.renovNum||1);});
+    var sum = entries.reduce(function(s,e){return s+e.commission;},0);
+    var max = Math.max.apply(null, entries.map(function(e){return e.renovNum||1;}));
+    return '<div class="group-block"><div class="group-header"><div class="group-title">'+c+'</div><div class="group-meta">'+entries.length+' operaciones · hasta '+max+'ª renovación</div><div class="group-sum">'+fmt(sum)+'</div></div><div class="table-wrap"><table>'+tableHead()+'<tbody>'+entries.map(tableRow).join('')+'</tbody></table></div></div>';
+  }).join('');
+}
+
+function viewNomina(h){
+  var withN = h.filter(function(e){return e.payrollMonth;});
+  var withoutN = h.filter(function(e){return !e.payrollMonth;});
+  var groups = {};
+  withN.forEach(function(e){if(!groups[e.payrollMonth])groups[e.payrollMonth]=[];groups[e.payrollMonth].push(e);});
+  var sorted = Object.keys(groups).sort().reverse();
+  var out = '';
+  sorted.forEach(function(ym){
+    var entries = groups[ym];
+    var sum = entries.reduce(function(s,e){return s+e.commission;},0);
+    out += '<div class="group-block"><div class="group-header"><div class="group-title">Nómina '+fmtMonth(ym+'-01')+'</div><div class="group-meta">'+entries.length+' comisiones</div><div class="group-sum">'+fmt(sum)+'</div></div><div class="table-wrap"><table>'+tableHead()+'<tbody>'+entries.map(tableRow).join('')+'</tbody></table></div></div>';
+  });
+  if(withoutN.length) out += '<div class="group-block"><div class="group-header"><div class="group-title" style="color:var(--text3)">Sin nómina asignada</div><div class="group-meta">'+withoutN.length+' comisiones</div></div><div class="table-wrap"><table>'+tableHead()+'<tbody>'+withoutN.map(tableRow).join('')+'</tbody></table></div></div>';
+  if(!out) return '<div class="empty"><div class="empty-icon">💼</div><div>Sin registros</div></div>';
+  return out;
+}
 
 async function toggleStatus(id){
-  const e=appData.history.find(e=>e.id==id);if(!e)return;
-  e.status=e.status==='paid'?'pending':'paid';renderPage();
-  const {error}=await sb.from('comisiones').update({status:e.status}).eq('id',id);
-  if(error)toast('Error al actualizar','err');else toast(e.status==='paid'?'Marcada como pagada ✓':'Marcada como pendiente');
+  var e = appData.history.find(function(e){return e.id==id;});
+  if(!e) return;
+  e.status = e.status==='paid' ? 'pending' : 'paid';
+  renderPage();
+  var res = await sb.from('comisiones').update({status:e.status}).eq('id',id);
+  if(res.error) toast('Error al actualizar','err');
+  else toast(e.status==='paid'?'Marcada como pagada ✓':'Marcada como pendiente');
 }
 
 async function setPayroll(id,val){
-  const e=appData.history.find(e=>e.id==id);if(!e)return;
-  e.payrollMonth=val;editPayroll=null;renderPage();
-  const {error}=await sb.from('comisiones').update({payroll_month:val}).eq('id',id);
-  if(error)toast('Error al actualizar','err');else toast('Nómina asignada: '+fmtMonth(val));
+  var e = appData.history.find(function(e){return e.id==id;});
+  if(!e) return;
+  e.payrollMonth = val;
+  editPayroll = null;
+  renderPage();
+  var res = await sb.from('comisiones').update({payroll_month:val}).eq('id',id);
+  if(res.error) toast('Error al actualizar','err');
+  else toast('Nómina asignada: '+fmtMonth(val));
 }
 
 async function deleteEntry(id){
-  if(!confirm('¿Eliminar esta comisión?'))return;
-  appData.history=appData.history.filter(e=>e.id!=id);renderPage();
-  const {error}=await sb.from('comisiones').delete().eq('id',id);
-  if(error)toast('Error al eliminar','err');else toast('Comisión eliminada');
+  if(!confirm('¿Eliminar esta comisión?')) return;
+  appData.history = appData.history.filter(function(e){return e.id!=id;});
+  renderPage();
+  var res = await sb.from('comisiones').delete().eq('id',id);
+  if(res.error) toast('Error al eliminar','err');
+  else toast('Comisión eliminada');
 }
 
 function exportCSV(){
-  const rows=[['Fecha','Cliente','PM','Tipo','Nº Renov.','Fecha Inicio','Fecha Fin','Importe (€)','Tramo %','Comisión (€)','Estado','Nómina']];
-  appData.history.forEach(e=>{rows.push([e.date,e.client,e.pm,e.type==='renovation'?'Renovación':'Upsell',e.renovNum||1,e.dateFrom||'',e.dateTo||'',e.amount.toFixed(2),e.rate,e.commission.toFixed(2),e.status==='paid'?'Pagada':'Pendiente',e.payrollMonth?fmtMonth(e.payrollMonth):''])});
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\uFEFF'+rows.map(r=>r.join(';')).join('\n')],{type:'text/csv;charset=utf-8;'}));a.download='comisiones-pm.csv';a.click();
+  var rows = [['Fecha','Cliente','PM','Tipo','Nº Renov.','Fecha Inicio','Fecha Fin','Importe (€)','Tramo %','Comisión (€)','Estado','Nómina']];
+  appData.history.forEach(function(e){
+    rows.push([e.date,e.client,e.pm,e.type==='renovation'?'Renovación':'Upsell',e.renovNum||1,e.dateFrom||'',e.dateTo||'',e.amount.toFixed(2),e.rate,e.commission.toFixed(2),e.status==='paid'?'Pagada':'Pendiente',e.payrollMonth?fmtMonth(e.payrollMonth):'']);
+  });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\uFEFF'+rows.map(function(r){return r.join(';');}).join('\n')],{type:'text/csv;charset=utf-8;'}));
+  a.download = 'comisiones-pm.csv';
+  a.click();
 }
 
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 function renderConfig(){
-  const renderTiers=type=>appData.config[type].map((t,i)=>`<div class="tier-row"><div class="tier-field"><label>Desde</label><input type="text" value="${fmtNum(t.min)} €" disabled></div><div class="tier-field"><label>Hasta</label><input type="number" value="${t.max!==null?t.max:''}" placeholder="Sin límite" ${i===appData.config[type].length-1?'disabled':`onchange="updateTierMax('${type}',${i},this.value)"`} min="0" step="1000"></div><div class="tier-field"><label>Comisión</label><div class="rate-wrap"><input type="number" class="with-sfx" value="${t.rate}" onchange="updateTierRate('${type}',${i},this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div></div>`).join('');
-  return`<div class="page"><div class="page-header"><div class="page-title">Configuración</div><div class="page-sub">Ajusta los tramos y porcentajes de comisión.</div></div>
-    <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="font-size:14px;font-weight:600">Renovación</span></div>${renderTiers('renovation')}</div>
-    <div class="card" style="margin-top:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block"></span><span style="font-size:14px;font-weight:600">Upsell</span></div>${renderTiers('upsell')}</div>
-    ${configSaved?`<div style="font-size:12px;color:var(--teal);margin-top:10px">✓ Cambios guardados</div>`:''}
-  </div>`;
+  var tiers = appData.config.renovation;
+  var tiersHtml = tiers.map(function(t,i){
+    return '<div class="tier-row">' +
+      '<div class="tier-field"><label>Desde</label><input type="text" value="'+fmtNum(t.min)+' €" disabled></div>' +
+      '<div class="tier-field"><label>Hasta</label><input type="number" value="'+(t.max!==null?t.max:'')+'" placeholder="Sin límite" '+(i===tiers.length-1?'disabled':'onchange="updateTierMax('+i+',this.value)"')+' min="0" step="1000"></div>' +
+      '<div class="tier-field"><label>Comisión</label><div class="rate-wrap"><input type="number" class="with-sfx" value="'+t.rate+'" onchange="updateTierRate('+i+',this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div>' +
+    '</div>';
+  }).join('');
+
+  return '<div class="page">' +
+    '<div class="page-header"><div class="page-title">Configuración</div><div class="page-sub">Ajusta los tramos de comisión para renovaciones. El upsell se configura manualmente al registrar cada operación.</div></div>' +
+    '<div class="card">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="font-size:14px;font-weight:600">Tramos de renovación</span></div>' +
+      tiersHtml +
+    '</div>' +
+    '<div class="card" style="margin-top:14px">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block"></span><span style="font-size:14px;font-weight:600">Upsell</span></div>' +
+      '<div style="font-size:13.5px;color:var(--text2);line-height:1.7">' +
+        '🙋 <strong>Solo el PM</strong> → 10% del importe<br>' +
+        '🤝 <strong>PM + AE</strong> → 5% del importe<br>' +
+        '<span style="font-size:12px;color:var(--text3)">El porcentaje se selecciona al registrar cada upsell.</span>' +
+      '</div>' +
+    '</div>' +
+    (configSaved ? '<div style="font-size:12px;color:var(--teal);margin-top:10px">✓ Cambios guardados</div>' : '') +
+  '</div>';
 }
 
-function updateTierRate(type,idx,val){const v=parseFloat(val);if(!isNaN(v)&&v>=0&&v<=100)appData.config[type][idx].rate=v;localStorage.setItem('pmconfig_v4',JSON.stringify(appData.config));configSaved=true;renderPage();setTimeout(()=>{configSaved=false;renderPage()},2500);}
-function updateTierMax(type,idx,val){const v=parseFloat(val);if(!isNaN(v)&&v>0){appData.config[type][idx].max=v;if(idx+1<appData.config[type].length)appData.config[type][idx+1].min=v;}localStorage.setItem('pmconfig_v4',JSON.stringify(appData.config));configSaved=true;renderPage();setTimeout(()=>{configSaved=false;renderPage()},2500);}
+function updateTierRate(idx,val){
+  var v = parseFloat(val);
+  if(!isNaN(v)&&v>=0&&v<=100) appData.config.renovation[idx].rate = v;
+  localStorage.setItem('pmconfig_v5', JSON.stringify(appData.config));
+  configSaved = true; renderPage();
+  setTimeout(function(){configSaved=false;renderPage();}, 2500);
+}
+
+function updateTierMax(idx,val){
+  var v = parseFloat(val);
+  if(!isNaN(v)&&v>0){
+    appData.config.renovation[idx].max = v;
+    if(idx+1<appData.config.renovation.length) appData.config.renovation[idx+1].min = v;
+  }
+  localStorage.setItem('pmconfig_v5', JSON.stringify(appData.config));
+  configSaved = true; renderPage();
+  setTimeout(function(){configSaved=false;renderPage();}, 2500);
+}
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-async function init() {
-  // Handle OAuth redirect with hash fragment
-  if (window.location.hash && window.location.hash.includes('access_token')) {
-    const { data, error } = await sb.auth.getSession();
-    if (data?.session) {
-      currentUser = data.session.user;
-      window.history.replaceState({}, document.title, window.location.pathname);
-      renderApp();
-      await loadData();
-      return;
-    }
-  }
-  const { data: { session } } = await sb.auth.getSession();
-  currentUser = session?.user || null;
-  if (currentUser) { renderApp(); loadData(); }
+sb.auth.getSession().then(function(res){
+  currentUser = res.data && res.data.session ? res.data.session.user : null;
+  if(currentUser){ renderApp(); loadData(); }
   else renderLogin();
-}
-init();
+});
 </script>
 </body>
 </html>
