@@ -168,7 +168,10 @@ sb.auth.onAuthStateChange(async (event, session) => {
 async function signInWithGoogle() {
   const { error } = await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: window.location.href }
+    options: {
+      redirectTo: 'https://comisiones-pm.vercel.app',
+      skipBrowserRedirect: false
+    }
   });
   if (error) toast('Error al iniciar sesión: ' + error.message, 'err');
 }
@@ -448,11 +451,24 @@ function updateTierRate(type,idx,val){const v=parseFloat(val);if(!isNaN(v)&&v>=0
 function updateTierMax(type,idx,val){const v=parseFloat(val);if(!isNaN(v)&&v>0){appData.config[type][idx].max=v;if(idx+1<appData.config[type].length)appData.config[type][idx+1].min=v;}localStorage.setItem('pmconfig_v4',JSON.stringify(appData.config));configSaved=true;renderPage();setTimeout(()=>{configSaved=false;renderPage()},2500);}
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-sb.auth.getSession().then(({data:{session}})=>{
-  currentUser=session?.user||null;
-  if(currentUser){renderApp();loadData();}
+async function init() {
+  // Handle OAuth redirect with hash fragment
+  if (window.location.hash && window.location.hash.includes('access_token')) {
+    const { data, error } = await sb.auth.getSession();
+    if (data?.session) {
+      currentUser = data.session.user;
+      window.history.replaceState({}, document.title, window.location.pathname);
+      renderApp();
+      await loadData();
+      return;
+    }
+  }
+  const { data: { session } } = await sb.auth.getSession();
+  currentUser = session?.user || null;
+  if (currentUser) { renderApp(); loadData(); }
   else renderLogin();
-});
+}
+init();
 </script>
 </body>
 </html>
