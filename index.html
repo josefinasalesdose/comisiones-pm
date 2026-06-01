@@ -111,7 +111,7 @@ tbody td.primary{color:var(--text);font-weight:500}
 .group-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .group-title{font-size:14px;font-weight:600}.group-meta{font-size:12px;color:var(--text3)}.group-sum{margin-left:auto;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--text2)}
 .empty{text-align:center;padding:50px 0;color:var(--text3)}.empty-icon{font-size:36px;margin-bottom:10px;opacity:.4}
-.tier-row{display:grid;grid-template-columns:1fr 1fr 110px;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px}
+.tier-row{display:grid;grid-template-columns:1fr 1fr 110px 36px;gap:10px;align-items:end;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px}
 .tier-field{display:flex;flex-direction:column;gap:5px}
 .tier-field label{font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
 .tier-field input{background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:7px 11px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;outline:none;width:100%}
@@ -603,30 +603,75 @@ function exportCSV(){
 function renderConfig(){
   var tiers = appData.config.renovation;
   var tiersHtml = tiers.map(function(t,i){
-    return '<div class="tier-row">' +
+    return '<div class="tier-row" id="tier-'+i+'">' +
       '<div class="tier-field"><label>Desde</label><input type="text" value="'+fmtNum(t.min)+' €" disabled></div>' +
       '<div class="tier-field"><label>Hasta</label><input type="number" value="'+(t.max!==null?t.max:'')+'" placeholder="Sin límite" '+(i===tiers.length-1?'disabled':'onchange="updateTierMax('+i+',this.value)"')+' min="0" step="1000"></div>' +
-      '<div class="tier-field"><label>Comisión</label><div class="rate-wrap"><input type="number" class="with-sfx" value="'+t.rate+'" onchange="updateTierRate('+i+',this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div>' +
+      '<div class="tier-field" style="position:relative"><label>Comisión</label>' +
+        '<div class="rate-wrap">' +
+          '<input type="number" class="with-sfx" value="'+t.rate+'" onchange="updateTierRate('+i+',this.value)" min="0" max="100" step="0.1">' +
+          '<span class="rate-suffix">%</span>' +
+        '</div>' +
+      '</div>' +
+      (tiers.length > 1 ?
+        '<button onclick="removeTier('+i+')" class="del-btn" style="align-self:flex-end">✕</button>'
+        : '<div></div>') +
     '</div>';
   }).join('');
 
   return '<div class="page">' +
     '<div class="page-header"><div class="page-title">Configuración</div><div class="page-sub">Ajusta los tramos de comisión para renovaciones. El upsell se configura manualmente al registrar cada operación.</div></div>' +
     '<div class="card">' +
-      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="font-size:14px;font-weight:600">Tramos de renovación</span></div>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">' +
+        '<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="font-size:14px;font-weight:600">Tramos de renovación</span></div>' +
+        '<button onclick="addTier()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--blue-dim);border:1px solid var(--blue);border-radius:8px;color:var(--blue);font-size:13px;font-weight:500;cursor:pointer">+ Añadir tramo</button>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 110px 36px;gap:8px;padding:0 0 8px;border-bottom:1px solid var(--border);margin-bottom:8px">' +
+        '<span style="font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Desde</span>' +
+        '<span style="font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Hasta</span>' +
+        '<span style="font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Comisión</span>' +
+        '<span></span>' +
+      '</div>' +
       tiersHtml +
     '</div>' +
-        '<div class="card" style="margin-top:14px">' +
+    '<div class="card" style="margin-top:14px">' +
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block"></span><span style="font-size:14px;font-weight:600">Upsell</span></div>' +
-      '<div class="tier-row">' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr 36px;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;align-items:end">' +
         '<div class="tier-field"><label>Solo el PM 🙋</label><div class="rate-wrap"><input type="number" class="with-sfx" value="'+(appData.config.upsell?appData.config.upsell.solo:10)+'" onchange="updateUpsellRate(0,this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div>' +
         '<div class="tier-field"><label>PM + AE 🤝</label><div class="rate-wrap"><input type="number" class="with-sfx" value="'+(appData.config.upsell?appData.config.upsell.ae:5)+'" onchange="updateUpsellRate(1,this.value)" min="0" max="100" step="0.1"><span class="rate-suffix">%</span></div></div>' +
-        '<div class="tier-field"></div>' +
+        '<div class="tier-field"></div><div></div>' +
       '</div>' +
     '</div>' +
     (configSaved ? '<div style="font-size:12px;color:var(--teal);margin-top:10px">✓ Cambios guardados</div>' : '') +
   '</div>';
 }
+
+function addTier(){
+  var tiers = appData.config.renovation;
+  var last = tiers[tiers.length-1];
+  var newMin = last.max !== null ? last.max : (last.min + 10000);
+  // Set previous last tier's max to newMin
+  last.max = newMin;
+  tiers.push({min: newMin, max: null, rate: last.rate});
+  localStorage.setItem('pmconfig_v5', JSON.stringify(appData.config));
+  configSaved = true; renderPage();
+  setTimeout(function(){configSaved=false;renderPage();}, 2500);
+}
+
+function removeTier(idx){
+  var tiers = appData.config.renovation;
+  if(tiers.length <= 1) return;
+  tiers.splice(idx, 1);
+  // Fix mins and maxes
+  for(var i=0; i<tiers.length; i++){
+    if(i===0) tiers[i].min = 0;
+    else tiers[i].min = tiers[i-1].max || 0;
+  }
+  tiers[tiers.length-1].max = null;
+  localStorage.setItem('pmconfig_v5', JSON.stringify(appData.config));
+  configSaved = true; renderPage();
+  setTimeout(function(){configSaved=false;renderPage();}, 2500);
+}
+
 
 function updateUpsellRate(idx,val){
   var v = parseFloat(val);
